@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Klockan</title>
+<style>
+*{
+  margin: 0;
+  padding: 0;
+
+}
+
+#Progress {
+  width: 100%;
+  background-color:;
+}
+
+#Bar1 {
+  margin-top:1px;
+  width: 0%;
+  height: 50px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: black;
+  border-radius: 0px 50px 50px 0px;
+
+
+}
+
+#Bar2 {
+  margin-top:1px;
+  width: 0%;
+  height: 50px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: black;
+  border-radius: 0px 50px 50px 0px;
+
+}
+
+#Bar3 {
+  margin-top:250px;
+  width: 0%;
+  height: 50px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: black;
+  border-radius: 0px 50px 50px 0px ;
+
+}
+#text {
+font-family: Arial;
+}
+
+
+
+#info {
+	margin: 10px 650px 0px 10px;
+	padding: 10px 10px 10px 10px;
+	background-color: lightgrey;
+	font-family: Arial;
+	display: none;
+}
+#infobutton{
+	margin: 10px 0px 0px 10px;
+}
+</style>
+
+<script>
+function startS() {
+    var today = new Date();
+	var s = today.getSeconds();
+	var antals = s
+	s = checkTime(s);
+	if (antals < 1) {
+	s=1
+	}
+
+	document.getElementById('Bar1').innerHTML = antals + " S";
+	document.getElementById('Bar1').style.width = (s * 1.66) + "%";
+    var t1 = setTimeout(startS, 1);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};
+    return i;
+}
+
+function startM() {
+    var today = new Date();
+	var m = today.getMinutes();
+	var antalm = m
+	m = checkTime(m);
+	if (antalm < 1) {
+	m=1
+	}
+
+	document.getElementById('Bar2').innerHTML = antalm + " Min";
+	document.getElementById('Bar2').style.width = (m * 1.66) + "%";
+    var t2 = setTimeout(startM, 1);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};
+    return i;
+}
+
+function startH() {
+    var today = new Date();
+	var h = today.getHours();
+	var antalm = h
+	h = checkTime(h);
+
+	document.getElementById('Bar3').innerHTML = h + " H";
+	document.getElementById('Bar3').style.width = (h * 4.1666667) + "%";
+    var t3 = setTimeout(startH, 1);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};
+    return i;
+}
+
+
+
+
+
+
+
+
+
+
+function move() {
+  var elem = document.getElementById("Bar1");
+  var width = 10;
+  var id = setInterval(frame, 100);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+      elem.innerHTML = (width * 1) + '';
+    }
+  }
+}
+
+function move() {
+  var elem = document.getElementById("Bar2");
+  var width = 0;
+  var id = setInterval(frame, 100);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+      elem.innerHTML = (width * 1) + '';
+    }
+  }
+}
+
+function move() {
+  var elem = document.getElementById("Bar3");
+  var width = 0;
+  var id = setInterval(frame, 100);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+      elem.innerHTML = (width * 1) + '';
+    }
+  }
+}
+
+
+function information() {
+
+	var inf = document.getElementById("info");
+    if (inf.style.display === "block") {
+        inf.style.display = "none";
+    } else {
+        inf.style.display = "block";
+    }
+
+
+}
+</script>
+</head>
+
+<body onload="startS(); startM(); startH()">
+	<center id="text">
+		<font size="7">Välkommen!</font>
+		<br>
+		<p>Här kan du kolla in den användbara klockan, fast på ett lite mer "intressant" sätt!</p>
+	</center>
+
+	<br>
+	<hr>
+
+	<p>
+
+	</p>
+
+	<div id="Progress">
+		<div id="Bar3">Error</div>
+		<div id="Bar2">Error</div>
+		<div id="Bar1">Error</div>
+	</div>
+
+
+
+
+	<div id="info">
+
+		<p>Klockan går efter datorns lokala tid, och inte efter en server.</p>
+		<p>Vilket innebär att du skulle kunna ändra tid på datorn i inställningarna
+		för att även ändra tiden på den här lite mer intressant klockan. </p>
+		<font size="1">(Tryck på "info-knappen" igen för att gömma detta meddelande)</font>
+
+	</div>
+
+	<button id="infobutton" onclick="information()">Info Om Klockan</button>
+
+
+
+</body>
+</html>
